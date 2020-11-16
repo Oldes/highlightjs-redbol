@@ -1,7 +1,8 @@
 # [Rebol][1] & [Red][2] language grammar for [highlight.js](https://highlightjs.org/)
 
-[![version](https://badgen.net/npm/v/highlightjs-redbol)](https://www.npmjs.com/package/highlightjs-redbol) [![license](https://badgen.net/badge/license/CC0%201.0/blue)](https://github.com/Oldes/highlightjs-redbol/blob/master/LICENSE)
-![install size](https://badgen.net/packagephobia/install/highlightjs-redbol) ![minified size](https://badgen.net/bundlephobia/min/highlightjs-redbol)
+[![version](https://badgen.net/npm/v/highlightjs-redbol)](https://www.npmjs.com/package/highlightjs-redbol)
+[![license](https://badgen.net/badge/license/CC0%201.0/blue)](https://github.com/Oldes/highlightjs-redbol/blob/master/LICENSE)
+[![minified size](https://badgen.net/bundlephobia/min/highlightjs-redbol)](https://unpkg.com/highlightjs-redbol/dist/redbol.min.js)
 [![Build Status](https://travis-ci.org/Oldes/highlightjs-redbol.svg?branch=master)](https://travis-ci.org/Oldes/highlightjs-redbol)
 
 ## Usage
