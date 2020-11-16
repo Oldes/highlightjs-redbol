@@ -13,7 +13,7 @@
 - [Red/System code examples](#red-system-code-examples)
 
 
-## [Usage](#usage)
+## Usage
 
 Simply include the Highlight.js library in your webpage or Node app, then load this module.
 
