@@ -10,7 +10,7 @@
 - [Usage](#usage)
 - [Rebol code examples](#rebol-code-examples)
 - [Red code examples](#red-code-examples)
-- [Red/System code examples](#red-system-code-examples)
+- [Red/System code examples](#redsystem-code-examples)
 
 
 ## Usage
