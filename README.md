@@ -1,4 +1,4 @@
-# [Rebol][1] & [Red][2] language grammar for [highlight.js](https://highlightjs.org/)
+# [Rebol][1] & [Red][2] language grammar for [highlight.js][5]
 
 [![version](https://badgen.net/npm/v/highlightjs-redbol)](https://www.npmjs.com/package/highlightjs-redbol)
 [![license](https://badgen.net/badge/license/CC0%201.0/blue)](https://github.com/Oldes/highlightjs-redbol/blob/master/LICENSE)
@@ -37,7 +37,7 @@ If you're using Node / Webpack / Rollup / Browserify, etc, simply require the la
 
 ```javascript
 var hljs = require('highlightjs');
-var hljsCypher = require('highlightjs-redbol');
+var hljsRedbol = require('highlightjs-redbol');
 
 hljs.registerLanguage("redbol", hljsRedbol);
 hljs.initHighlightingOnLoad();
@@ -45,7 +45,7 @@ hljs.initHighlightingOnLoad();
 
 ### React
 
-You need to import both Highlight.js and third-party language like Cypher:
+You need to import both Highlight.js and third-party language like Redbol:
 
 ```js
 import React, {Component} from 'react'
@@ -90,12 +90,15 @@ Oldes <oldes.huhuman@gmail.com>
 
 ## Links
 
-- The official site for the Highlight.js library is <https://highlightjs.org/>.
+- The official site for the Highlight.js library is [https://highlightjs.org][5].
 - The Highlight.js GitHub project: <https://github.com/highlightjs/highlight.js>
-- Learn more about Red: [https://www.red-lang.org][1]
-- Learn more about Rebol: [http://www.rebol.com][2] or [Oldes' fork][3]
+- Learn more about Red: [https://www.red-lang.org][2]
+- Learn more about Rebol: [http://www.rebol.com][1] or [Oldes' fork][3]
+- Project pages: [https://oldes.github.io/highlightjs-redbol/][6]
 
-[1]: https://www.red-lang.org
-[2]: http://www.rebol.com
+[1]: http://www.rebol.com
+[2]: https://www.red-lang.org
 [3]: https://oldes.github.io/Rebol3
 [4]: https://github.com/oldes/highlightjs-redbol/blob/master/LICENSE
+[5]: https://highlightjs.org
+[6]: https://oldes.github.io/highlightjs-redbol/
