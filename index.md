@@ -243,4 +243,7 @@ Red/System [
 ]
 ```
 
-
+[1]: https://www.red-lang.org
+[2]: http://www.rebol.com
+[3]: https://oldes.github.io/Rebol3
+[4]: https://github.com/oldes/highlightjs-redbol/blob/master/LICENSE
