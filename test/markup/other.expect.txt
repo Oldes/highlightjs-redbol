@@ -1,0 +1,14 @@
+<span class="hljs-string">#include</span> <span class="hljs-string">%../common/FPU-configuration.reds</span>
+
+<span class="hljs-comment">; C types</span>
+
+<span class="hljs-string">#define</span> <span class="hljs-literal">time!</span>                   <span class="hljs-literal">long!</span>
+<span class="hljs-string">#define</span> <span class="hljs-literal">clock!</span>                  <span class="hljs-literal">long!</span>
+
+<span class="hljs-string">#either</span> OS<span class="hljs-built_in"> =</span> <span class="hljs-literal">&#x27;Windows</span> <span class="hljs-regexp">[</span>
+    <span class="hljs-string">#define</span> clocks-per-second   <span class="hljs-number">1000</span>
+<span class="hljs-regexp">][</span>
+    <span class="hljs-comment">; CLOCKS_PER_SEC value for Syllable, Linux (XSI-conformant systems)</span>
+    <span class="hljs-comment">; TODO: check for other systems</span>
+    <span class="hljs-string">#define</span> clocks-per-second   <span class="hljs-number">1000</span>&#x27;<span class="hljs-number">000</span>
+<span class="hljs-regexp">]</span> 

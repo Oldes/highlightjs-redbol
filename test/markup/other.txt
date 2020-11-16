@@ -1,0 +1,14 @@
+#include %../common/FPU-configuration.reds
+
+; C types
+
+#define time!                   long!
+#define clock!                  long!
+
+#either OS = 'Windows [
+    #define clocks-per-second   1000
+][
+    ; CLOCKS_PER_SEC value for Syllable, Linux (XSI-conformant systems)
+    ; TODO: check for other systems
+    #define clocks-per-second   1000'000
+] 

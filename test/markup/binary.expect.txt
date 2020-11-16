@@ -1,0 +1,10 @@
+<span class="hljs-string">#{00FF0000}</span>
+<span class="hljs-string">#{00FF0000 FF000000}</span>
+<span class="hljs-string">#{00FF0000	FF000000}</span>
+<span class="hljs-string">2#{00001111}</span>
+<span class="hljs-string">64#{/wAAAA==}</span>
+<span class="hljs-string">64#{/wAAA A==}</span>
+<span class="hljs-string">64#{/wAAA	A==}</span>
+<span class="hljs-string">#{
+00
+00}</span>

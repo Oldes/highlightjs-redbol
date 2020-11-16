@@ -1,0 +1,1 @@
+<span class="hljs-comment">;foo</span>
