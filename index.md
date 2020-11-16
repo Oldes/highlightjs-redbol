@@ -51,6 +51,7 @@ hljs.registerLanguage("redbol", hljsRedbol);
 hljs.initHighlightingOnLoad();
 ```
 
+ 
 
 
 ## Rebol code examples
@@ -210,7 +211,7 @@ view [
 Red/System [
 	Title:   "Red/System (runtime independent) wait function"
 	Author:  "Oldes"
-	File: 	 %wait.reds
+	File:    %wait.reds
 	Rights:  "Copyright (C) 2017 David 'Oldes' Oliva. All rights reserved."
 	License: "BSD-3 - https:;//github.com/red/red/blob/master/BSD-3-License.txt"
 ]
