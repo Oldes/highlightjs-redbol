@@ -45,7 +45,7 @@ If you're using Node / Webpack / Rollup / Browserify, etc, simply require the la
 
 ```javascript
 var hljs = require('highlightjs');
-var hljsCypher = require('highlightjs-redbol');
+var hljsRedbol = require('highlightjs-redbol');
 
 hljs.registerLanguage("redbol", hljsRedbol);
 hljs.initHighlightingOnLoad();
