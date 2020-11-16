@@ -1,4 +1,4 @@
-# [Rebol][1] & [Red][2] language grammar for [highlight.js](https://highlightjs.org/)
+# [Rebol][1] & [Red][2] language grammar for [highlight.js][3]
 
 [![version](https://badgen.net/npm/v/highlightjs-redbol)](https://www.npmjs.com/package/highlightjs-redbol)
 [![license](https://badgen.net/badge/license/CC0%201.0/blue)](https://github.com/Oldes/highlightjs-redbol/blob/master/LICENSE)
@@ -243,7 +243,6 @@ Red/System [
 ]
 ```
 
-[1]: https://www.red-lang.org
-[2]: http://www.rebol.com
-[3]: https://oldes.github.io/Rebol3
-[4]: https://github.com/oldes/highlightjs-redbol/blob/master/LICENSE
+[1]: http://www.rebol.com
+[2]: https://www.red-lang.org
+[3]: https://highlightjs.org
