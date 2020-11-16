@@ -1,2 +1,3 @@
-# Rebol3 - GitHub Pages
-Source code for the Rebol 3 GitHub Pages -> https://oldes.github.io/Rebol3/
+# highlightjs-redbol - GitHub Pages
+
+Source code for Rebol & Red Highlight.js syntax colorizer GitHub Pages -> https://oldes.github.io/highlightjs-redbol/
