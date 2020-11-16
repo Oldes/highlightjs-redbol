@@ -2,7 +2,7 @@
 
 ![version](https://badgen.net/npm/v/highlightjs-redbol) ![license](https://badgen.net/badge/license/CC0%201.0/blue)
 ![install size](https://badgen.net/packagephobia/install/highlightjs-redbol) ![minified size](https://badgen.net/bundlephobia/min/highlightjs-redbol)
-[![Build Status](https://travis-ci.com/oldes/highlightjs-redbol.svg?branch=master)](https://travis-ci.com/oldes/highlightjs-redbol)
+[![Build Status](https://travis-ci.org/Oldes/highlightjs-redbol.svg?branch=master)](https://travis-ci.org/Oldes/highlightjs-redbol)
 
 ## Usage
 
