@@ -51,42 +51,6 @@ hljs.registerLanguage("redbol", hljsRedbol);
 hljs.initHighlightingOnLoad();
 ```
 
-### React
-
-You need to import both Highlight.js and third-party language like Cypher:
-
-```js
-import React, {Component} from 'react'
-import 'highlight.js/scss/darcula.scss' # your favourite theme
-import redbol from './redbol'
-import hljs from 'highlight.js'
-hljs.registerLanguage('redbol', redbol);
-
-class Highlighter extends Component
-{
-  constructor(props)
-  {
-    super(props);
-    hljs.initHighlightingOnLoad();
-  }
-
-  render()
-  {
-    let {children} = this.props;
-    return
-    {
-      <pre ref={(node) => this.node = node}>
-        <code className="redbol">
-          {children}
-        </code>
-      </pre>
-    }
-  }
-}
-
-export default Highlighter;
-```
-
 
 
 ## Rebol code examples
