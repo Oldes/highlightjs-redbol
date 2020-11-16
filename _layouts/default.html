@@ -42,7 +42,7 @@
     <div id="footer_wrap" class="outer">
       <footer class="inner"><center><a href=https://github.com/Oldes/highlightjs-redbol/tree/gh-pages>source of this page</a></center></footer>
     </div>
-    <script src="js/highlight-8.9.1-rebol.pack.js"></script>
+    <script src="js/highlight-10.4.0-redbol.min.js"></script>
     <script src="js/jquery-2.1.1.min.js"></script>
     <script>
         $('pre').html(function() {
@@ -53,6 +53,10 @@
           if(code.hasClass('language-rebol') ) {
             code.removeClass('language-rebol');
             code.addClass('rebol');
+            hljs.highlightBlock(block);
+          } else if(code.hasClass('language-red') ) {
+            code.removeClass('language-red');
+            code.addClass('red');
             hljs.highlightBlock(block);
           }
         });
