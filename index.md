@@ -5,6 +5,13 @@
 [![minified size](https://badgen.net/bundlephobia/min/highlightjs-redbol)](https://unpkg.com/highlightjs-redbol/dist/redbol.min.js)
 [![Build Status](https://travis-ci.org/Oldes/highlightjs-redbol.svg?branch=master)](https://travis-ci.org/Oldes/highlightjs-redbol)
 
+## List of content
+
+- [Usage](#usage)
+- [Rebol code examples](#rebol-code-examples)
+- [Red code examples](#red-code-examples)
+- [Red/System code examples](#red-system-code-examples)
+
 
 ## [Usage](#usage)
 
@@ -80,7 +87,9 @@ class Highlighter extends Component
 export default Highlighter;
 ```
 
-### [Rebol code examples](#examples)
+
+
+## Rebol code examples
 
 Simple HTTP server:
 
@@ -211,32 +220,62 @@ github: context [
 ]
 ```
 
-and or some random function:
-```rebol
-unpack-bits: function [
-	{Decompress data compressed by Apple's PackBits routine}
-	c [binary!] {Data to decompress}
-][
-	;https://web.archive.org/web/20080705155158/http://developer.apple.com/technotes/tn/tn1023.html
-	u: make binary! 4 * length? c
-	i: c ;store position
-	while [not tail? c][
-		n: first+ c
-		case [
-			n < 128 [
-				++ n
-				append u copy/part c n
-				c: skip c n
+## Red code examples
+
+Simple calculator:
+
+```red
+Red [needs: 'view]
+view [
+     title "Calculator"
+     f: field 230x50 font-size 25 ""  return 
+     style b: button 50x50 [append f/text face/text]
+     b "1"  b "2"  b "3"  b " + "  return 
+     b "4"  b "5"  b "6"  b " - "  return 
+     b "7"  b "8"  b "9"  b " * "  return 
+     b "0"  b "."  b " / "  b "=" [attempt [
+             calculation: form do f/text 
+             append clear f/text calculation
+     ]] 
+]
+```
+
+## Red/System code examples
+
+```red
+Red/System [
+	Title:   "Red/System (runtime independent) wait function"
+	Author:  "Oldes"
+	File: 	 %wait.reds
+	Rights:  "Copyright (C) 2017 David 'Oldes' Oliva. All rights reserved."
+	License: "BSD-3 - https:;//github.com/red/red/blob/master/BSD-3-License.txt"
+]
+
+;use this code only when Red runtime is not embedded 
+#if red-pass? = no [
+	#switch OS [
+		Windows   [
+			#import [
+				"kernel32.dll" stdcall [
+					sleep: "Sleep" [
+						dwMilliseconds	[integer!]
+					]
+				]
 			]
-			n > 128 [
-				n: 257 - n
-				append/dup u first+ c n
+			wait: func [ms [integer!]][sleep ms]
+		]
+		#default  [
+			#import [
+				LIBC-file cdecl [
+					usleep: "usleep" [
+						microseconds [integer!]
+						return: 	 [integer!]
+					]
+				]
 			]
-			;n = 128 is ignored
+			wait: func [ms [integer!]][usleep 1000 * ms]
 		]
 	]
-	c: i ;restore position
-	u
 ]
 ```
 
