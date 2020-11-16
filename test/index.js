@@ -2,7 +2,7 @@ require('should');
 const promisify = require('util').promisify;
 const path = require('path');
 const glob = require('glob');
-const hljs = require('../build');
+const hljs = require('highlightjs');
 const fs = require('fs');
 const hljsDefineRedbol = require('../src/languages/redbol');
 hljs.registerLanguage('redbol', hljsDefineRedbol);
@@ -18,9 +18,6 @@ function testLanguage(language, testDir) {
       utility.buildPath('markup', language, '*.expect.txt');
     const filePath = where;
     const filenames = glob.sync(filePath);
-
-console.log(filePath);
-console.log(filenames);
 
     filenames.forEach(function(filename) {
       const testName = path.basename(filename, '.expect.txt');
