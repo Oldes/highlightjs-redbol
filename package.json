@@ -1,6 +1,6 @@
 {
   "name": "highlightjs-redbol",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Red & Rebol syntax highlighting plugin for highlight.js",
   "main": "src/languages/redbol.js",
   "scripts": {
