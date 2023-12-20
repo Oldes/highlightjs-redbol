@@ -31,8 +31,8 @@
 //  },
   "dependencies": {
     "highlightjs": "^11.9.0"
-  },
-//  "directories": {
+  }
+// , "directories": {
 //    "test": "test"
 //  }
 }
