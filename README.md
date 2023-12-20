@@ -1,9 +1,8 @@
-# [Rebol][1] & [Red][2] language grammar for [highlight.js][5]
+# [Rebol][1] & [Red][2] language grammar for [highlight.js][5](version 11.9.0)
 
 [![version](https://badgen.net/npm/v/highlightjs-redbol)](https://www.npmjs.com/package/highlightjs-redbol)
 [![license](https://badgen.net/badge/license/CC0%201.0/blue)](https://github.com/Oldes/highlightjs-redbol/blob/master/LICENSE)
 [![minified size](https://badgen.net/bundlephobia/min/highlightjs-redbol)](https://unpkg.com/highlightjs-redbol/dist/redbol.min.js)
-[![Build Status](https://travis-ci.org/Oldes/highlightjs-redbol.svg?branch=master)](https://travis-ci.org/Oldes/highlightjs-redbol)
 
 ## Usage
 
@@ -14,19 +13,17 @@ Simply include the Highlight.js library in your webpage or Node app, then load t
 Simply load the module after loading Highlight.js. You'll use the minified version found in the `dist` directory. This module is just a CDN build of the language, so it will register itself as the Javascript is loaded.
 
 ```html
-<script type="text/javascript" src="/path/to/highlight.min.js"></script>
-<script type="text/javascript" charset="UTF-8"
-  src="/path/to/highlightjs-redbol/dist/redbol.min.js"></script>
-<script type="text/javascript">
-  hljs.initHighlightingOnLoad();
-</script>
+<link rel="stylesheet" href="/path/to/styles/default.min.css">
+<script src="/path/to/highlight.min.js"></script>
+<script src="/path/to/redbol.min.js"></script>
+<script>hljs.highlightAll();</script>
+<pre><code class="language-rebol">...</code></pre>
 ```
 
 ### Using directly from the UNPKG CDN
 
 ```html
-<script type="text/javascript"
-  src="https://unpkg.com/highlightjs-redbol/dist/redbol.min.js"></script>
+<script src="https://unpkg.com/highlightjs-redbol/dist/redbol.min.js"></script>
 ```
 
 - More info: <https://unpkg.com>
@@ -36,11 +33,10 @@ Simply load the module after loading Highlight.js. You'll use the minified versi
 If you're using Node / Webpack / Rollup / Browserify, etc, simply require the language module, then register it with Highlight.js.
 
 ```javascript
-var hljs = require('highlightjs');
+var hljs = require('highlight.js');
 var hljsRedbol = require('highlightjs-redbol');
 
-hljs.registerLanguage("redbol", hljsRedbol);
-hljs.initHighlightingOnLoad();
+hljs.highlightAll();
 ```
 
 ### React
@@ -50,16 +46,15 @@ You need to import both Highlight.js and third-party language like Redbol:
 ```js
 import React, {Component} from 'react'
 import 'highlight.js/scss/darcula.scss' # your favourite theme
-import redbol from './redbol'
 import hljs from 'highlight.js'
-hljs.registerLanguage('redbol', redbol);
+import redbol from './redbol'
 
 class Highlighter extends Component
 {
   constructor(props)
   {
     super(props);
-    hljs.initHighlightingOnLoad();
+    hljs.highlightAll();
   }
 
   render()
@@ -68,7 +63,7 @@ class Highlighter extends Component
     return
     {
       <pre ref={(node) => this.node = node}>
-        <code className="redbol">
+        <code className="rebol">
           {children}
         </code>
       </pre>

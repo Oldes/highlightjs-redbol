@@ -1,11 +1,11 @@
 {
   "name": "highlightjs-redbol",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "Red & Rebol syntax highlighting plugin for highlight.js",
   "main": "src/languages/redbol.js",
-  "scripts": {
-    "test": "mocha --reporter spec"
-  },
+//  "scripts": {
+//    "test": "mocha --reporter spec"
+//  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/oldes/highlightjs-redbol.git"
@@ -24,15 +24,15 @@
     "url": "https://github.com/oldes/highlightjs-redbol/issues"
   },
   "homepage": "https://github.com/oldes/highlightjs-redbol#readme",
-  "devDependencies": {
-    "highlightjs": "^9.10.0",
-    "mocha": "^8.2.1",
-    "should": "^13.2.3"
-  },
+//  "devDependencies": {
+//    "highlightjs": "^11.9.0",
+//    "mocha": "^8.2.1",
+//    "should": "^13.2.3"
+//  },
   "dependencies": {
-    "highlightjs": "^9.10.0"
+    "highlightjs": "^11.9.0"
   },
-  "directories": {
-    "test": "test"
-  }
+//  "directories": {
+//    "test": "test"
+//  }
 }

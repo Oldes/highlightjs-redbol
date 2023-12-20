@@ -1,17 +1,42 @@
-/**
- * Language: Rebol & Red languages
+/*
+ * Language: Rebol & Red
  * Category: common, scripting
+ * Source: https://github.com/oldes/highlightjs-redbol
+ * Version: 2.0.0
  * Contributors:
  *   Oldes <oldes.huhuman@gmail.com>
  */
+  (function(){
+    var hljsGrammar = (function () {
+  'use strict';
 
-module.exports = function (hljs)
-{
-  var CHAR_INLINE = {
-    className: 'string',
-    begin: '\\^(\\(([0-9a-fA-F]+|del)\\)|.)',
+  function rebol(hljs) {
+
+  const LEX_DELIMIT = '\\s\\n\\[\\]\\(\\)\\"{}/;';
+  const LEX_DELIMIT2 = '\\s\\n\\[\\]\\(\\)\\"{};'; // without /
+  const LOOK_BEHIND_DELIMIT = '(?<=^|['+ LEX_DELIMIT +'])';
+  const LOOK_AHEAD_DELIMIT  = '(?=$|['+ LEX_DELIMIT +'])';
+  const NOT_DELIMIT = '[^'+ LEX_DELIMIT +']+';
+
+  const ANY_WORD = {
+  //  className: 'literal',
+    begin: LOOK_BEHIND_DELIMIT+NOT_DELIMIT,
+  }
+
+  const CHAR_INLINE = {
+    className: 'subst',
+    begin: '\\^(\\(([0-9a-fA-F]+|del|tab)\\)|.)',
   };
-  var STRING = {
+  const CHAR = {
+    className: 'char',
+    begin: '#"',
+    end: '"',
+    contains: [
+      CHAR_INLINE
+    ]
+  };
+
+  const STRING = {
     className: 'string',
     illegal: '\\n',
     variants: [
@@ -22,147 +47,246 @@ module.exports = function (hljs)
       CHAR_INLINE
     ]
   };
-  var STRING_MULTILINE = {
+  const STRING_MULTILINE = {
     className: 'string',
     begin: '{', end: '}',
     contains: [CHAR_INLINE]
   }
-  var TAG = {
+
+  const STRING_RAW_1 = {
+    className: 'string',
+    begin: '%{', end: '}%'
+  }
+  const STRING_RAW_2 = {
+    className: 'string',
+    begin: '%%{', end: '}%%',
+    contains: [STRING_RAW_1]
+  }
+  const STRING_RAW_3 = {
+    className: 'string',
+    begin: '%%%{', end: '}%%%',
+    contains: [STRING_RAW_2, STRING_RAW_1]
+  }
+  const STRING_RAW_4 = {
+    className: 'string',
+    begin: '%%%%{', end: '}%%%%',
+    contains: [STRING_RAW_3, STRING_RAW_2, STRING_RAW_1]
+  }
+
+  const TAG = {
     className: 'string',
     begin: '<', end: '>',
     illegal: '\\n',
   };
-  var FILE = {
+  const FILE_QUOTED = {
+    className: 'string',
+    illegal: '\\n',
+    begin: '%"', end: '"',
+    contains: [CHAR_INLINE]
+  };
+  const FILE = {
     className: 'string',
     begin: '%[^\\s\\n\\[\\]\\(\\)]+'
   };
-  var EMAIL = {
+  const EMAIL = {
     className: 'string',
     begin: '[^\\s\\n:/\\[\\]\\(\\)]+@[^\\s\\n:/\\[\\]\\(\\)]+'
   };
-  var URL = {
+  const URL = {
     className: 'string',
-    begin: '[A-Za-z][\\w]{1,9}:(/{0,3}[^\\s\\n\\[\\]\\(\\)]+|//)'
-  }
-  var COMMENT1 = {
+    begin: LOOK_BEHIND_DELIMIT+'[^'+LEX_DELIMIT2+':\\d]+:[^'+LEX_DELIMIT2+']+'
+  };
+
+  
+  const COMMENT1 = {
     className: 'doctag',
-    begin: ';-.*',
+    begin: ';[-@].*',
     illegal: '\\n'
   };
-  var COMMENT2 = {
+  const COMMENT2 = {
     className: 'comment',
     begin: ';.*',
     illegal: '\\n'
   };
-  var COMMENT_SPECIAL = {
-    className: 'comment',
-    begin: '\\s: ', end: '\\n',
-    //contains: [hljs.C_NUMBER_MODE]
-  };
-  var COMMENT_SPECIAL2 = {
+//  const COMMENT_SPECIAL = {
+//    className: 'comment',
+//    begin: '\\s: ', end: '\\n',
+//    //contains: [hljs.C_NUMBER_MODE]
+//  };
+  const COMMENT_PROMPT = {
     className: 'doctag',
     begin: /^(>>|red>>)/,
     //contains: [hljs.C_NUMBER_MODE]
   };
-  var COMMENT_ERROR = {
+  const COMMENT_ERROR = {
     className: 'doctag',
     begin: /^[\*]{2}[\*]*\s/, end: /\n/,
     //contains: [hljs.C_NUMBER_MODE]
   };
-  var BINARY64 = {
-    className: 'string',
-    begin: '64#\\{[0-9a-zA-Z+/=\\s]*\\}'
-  };
-  var BINARY16 = {
-    className: 'string',
-    begin: '(16)?#\\{\\s*([0-9a-fA-F]{2,2}\\s*)*\\}'
-  };
-  var BINARY2 = {
-    className: 'string',
-    begin: '2#\\{(([01]\\s*){8})*\\}'
-  };
-  var PAIR = {
-    className: 'number',
-    begin: /[-+]?\d+x[-+]?\d+/
-  };
-  var DATE = {
-    className: 'number',
-    begin: '\\d{1,2}\\-([A-Za-z]{3}|January|Febuary|March|April|May|June|July|August|September|October|November|December)\\-\\d{4}(/\\d{1,2}[:]\\d{1,2}([:]\\d{1,2}(\\.\\d{1,5})?)?([+-]\\d{1,2}[:]\\d{1,2})?)?'
-  }
-  var TIME = {
-    className: 'number',
-    begin: /([-+]?[:]\d{1,2}([aApP][mM])?)|([-+]?[:]\d{1,2}[.]\d{0,9})|([-+]?\d{1,2}[:]\\d{1,2}([aApP][mM])?)|([-+]?\d{1,2}[:]\d{1,2}[.]\d{0,9})|([-+]?\d{1,2}[:]\d{1,2}[:]\d{1,2}([.]\d{0,9})?([aApP][mM])?)(?!\w)/
-  };
-  var TUPLE = {
-    className: 'number',
-    begin: '(\\d{0,3}[.]\\d{0,3}[.]\\d{0,3}([.]\\d{0,3}){0,7})'
-  };
-  var NUMBER_HEX = {
-    className: 'number',
-    begin: '([0-9A-F]+)h(?=\\s|\\)|\\]|/|;|\\\"|{\\[|\\(|$)'
-  };
-  var NUMBER_MONEY = {
-    className: 'number',
-    begin: '-?[a-zA-Z]*\\$\\d+(\\.\\d*)?'
-  };
-  var SET_WORD = {
-    className: 'section',
-    begin: /[a-zA-Z_\-]+[a-zA-Z0-9_\-]*:/
-  };
-  var GET_WORD = {
-    className: 'section',
-    begin: /:[a-zA-Z_\-]+[a-zA-Z0-9_\-]*/
-  };
-  var REFINEMENT = {
-    className: 'variable',
-    begin: '/[^\\s\\n\\[\\]\\(\\)]*'
-  }
-  var LIT_WORD = {
-    className: 'literal',
-    begin: /\'[a-zA-Z_]+[a-zA-Z0-9_\-\!]*/    //not complete, but should be fine so far
-  };
-  var ISSUE = {
-    className: 'string',
-    begin: /\#[^\s\n\[\]\(\)\/]*/    //not exact, but should be fine so far
-  };
-  var DATATYPE = {
-    className: 'literal',
-    begin: /[a-zA-Z]+[a-zA-Z0-9_\-\!]*\!/    //just simple case to cover words like: integer! float! and such
-  };
-  var OPERATOR = {
-    className: 'built_in',
-    begin: /(\s|\t)+(==|!=|<=|>=|<>|<|>|>>|>>>|<<|\+|-|=|\*|%|\/|\b(and|or|xor))(?=\s|\(|\[|\)|\]|\/|;|\"|{|$)/
-  };
-  var BRACKET = {
+
+  const BRACKET = {
     className: 'regexp',
     begin: /(\[|\]|\(|\))+|\#\(|\#\[/   //colors also start of serialized values and maps
   };
+
+  const BIN2 = {
+    className: 'string',
+    begin: '\\s*(([01]\\s*){8})+'
+  };
+  const BIN16 = {
+    className: 'string',
+    begin: '\\s*([0-9a-fA-F]{2,2}\\s*)+'
+  };
+
+  const BINARY64 = {
+    className: 'string',
+    begin: '64#\\{[0-9a-zA-Z+/=\\s]*\\}'
+  };
+  const BINARY16 = {
+    className: 'string',
+    begin: '(16)?#\\{', end: '\\}',
+    contains: [COMMENT1, COMMENT2, BIN16]
+  };
+  const BINARY2 = {
+    className: 'string',
+    begin: '2#\\{', end: '\\}',
+    contains: [COMMENT1, COMMENT2, BIN2]
+  };
+
+  const NUMBER_BIN = {
+    className: 'number',
+    variants: [
+      {begin: '(0|16)#[0-9a-fA-F]+'},
+      {begin: '2#[01]+'},
+      {begin: '8#[0-7]+'},
+      {begin: '10#[0-9]+'},
+    ], 
+  };
+
+  const DECIMAL_RE = '[-+]?(1\\.#INF|1\\.#NaN)|[-+]?(?:\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?';
+
+  const NUMBER_DECIMAL = {
+    className: 'number',
+    begin: '\\b'+DECIMAL_RE
+  };
+
+  const NUMBER_MONEY = {
+    className: 'number',
+    begin: '[+-]?([a-zA-Z]{3})?\\$[-+]?(?:\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?'
+  };
+
+  const PAIR = {
+    className: 'number',
+    begin: '(' + DECIMAL_RE + ')x(' + DECIMAL_RE + ')'
+  };
+  const DATE = {
+    className: 'number',
+    begin: '\\d{1,2}\\-([A-Za-z]{3}|January|Febuary|March|April|May|June|July|August|September|October|November|December)\\-\\d{4}(/\\d{1,2}[:]\\d{1,2}([:]\\d{1,2}(\\.\\d{1,5})?)?([+-]\\d{1,2}[:]\\d{1,2})?)?'
+  }
+  const TIME = {
+    className: 'number',
+    begin: /([-+]?\d{0,5}([:]\d{1,9}){1,2}([.,]\d{0,9})?(am|pm)?)(?!\w)/
+  };
+  const TUPLE_IVALID = {
+    className: 'emphasis',
+    begin: /(\.\d{1,3})+/
+  };
+  const TUPLE = {
+    className: 'number',
+    begin: '(\\d{0,3}[.]\\d{0,3}[.]\\d{0,3})([.]\\d{1,3}){0,9}',
+    contains: [TUPLE_IVALID]
+  };
+  
+  const SET_WORD = {
+    className: 'variable',
+    begin: LOOK_BEHIND_DELIMIT+NOT_DELIMIT+":",
+  };
+  const GET_WORD = {
+    className: 'variable',
+    begin: LOOK_BEHIND_DELIMIT+':'+NOT_DELIMIT,
+  };
+  
+  const LIT_WORD = {
+    className: 'section',
+    begin: LOOK_BEHIND_DELIMIT+"'"+NOT_DELIMIT,
+  };
+  const REFINEMENT = {
+    className: 'section',
+    begin: '[/@]'+NOT_DELIMIT, // sharing refinement and ref datatypes!
+  }
+  const ISSUE = {
+    className: 'string',
+    begin: '#'+NOT_DELIMIT,
+  };
+
+  const DATATYPE = {
+    className: 'type',
+    begin: LOOK_BEHIND_DELIMIT+NOT_DELIMIT+"[!?]"+LOOK_AHEAD_DELIMIT,
+  };
+  const OPERATOR = {
+    className: 'operator',
+    begin: LOOK_BEHIND_DELIMIT
+      +'(==|!==|!=|<=|>=|=?|<>|<|>|>>|>>>|<<|\\+\\+|\\+|\\-\\-|\\-|=|\\*|%|\\/\\/|\\/|and|or|xor|!)'
+      +LOOK_AHEAD_DELIMIT,
+  };
+  const KEYWORD = {
+    className: 'keyword',
+    begin: LOOK_BEHIND_DELIMIT
+     +'(if|either|unless|any|all|quit|return|exit|continue|break|try|catch|throw|make|to|as|set|print|prin|probe|'
+     +'for|foreach|forall|forskip|until|do|while|case|loop|repeat|switch|'
+     +'reduce|reform|join|ajoin|copy|binary|'
+     //+'load|transcode|read|write|open|close|'
+     +'does|has|wrap|function|func|closure|bind|parse|wait)'
+     +LOOK_AHEAD_DELIMIT,
+  };
+
+  const RED_NUMBER_HEX = {
+    className: 'number',
+    begin: '\\b([0-9A-F]+)h(?=\\s|\\)|\\]|/|;|\\\"|{\\[|\\(|$)'
+  };
+
   return {
     aliases: ['rebol', 'red', 'red/system'],
-    keywords: {
-      lexemes: '[a-zA-Z_][a-zA-Z0-9_\\-\\!]*',
-      keyword:
-        'make set print probe|10 func function does has do while until unless|10 if either|10 else '+
-        'for foreach|10 forall|10 forskip|10 remove-each until while case loop repeat|10 switch '+
-        'at insert append tail head back repend next to thru collect keep return throw catch continue break '+
-        'open close load reduce|10 rejoin|10 insert bind parse|10 '+
-        'union intersect unique charset extend object context',
-      literal:
-        'off on yes no true false null none not all any end integer!',
-      built_in:
-        'random absolute add divide multiply negate remainder subtract pick reverse '+
-        'select find'
-    },
+    case_insensitive: true,
     illegal: /(\/\*|\/\/)/,
     contains: [
-      STRING, STRING_MULTILINE, FILE, URL, TAG, EMAIL, REFINEMENT, DATATYPE, LIT_WORD,
-      BINARY2, BINARY16, BINARY64, 
-      COMMENT1, COMMENT2, COMMENT_SPECIAL, COMMENT_SPECIAL2, COMMENT_ERROR,
-      PAIR, DATE, TIME, TUPLE,
-      OPERATOR,
-      SET_WORD, GET_WORD, BRACKET, ISSUE,
-      NUMBER_HEX, NUMBER_MONEY, 
-      hljs.C_NUMBER_MODE
+      COMMENT1,     // ;-- or ;@@
+      COMMENT2,     // ;...
+      COMMENT_PROMPT, COMMENT_ERROR,
+      BRACKET,      // []() but also #() and #[]
+      BINARY2,      // 2#{01010000}
+      BINARY16,     //  #{DEADF00D} or 16#{DEAD F00D}
+      BINARY64,     // 64#{3q3wDQ==}
+      NUMBER_BIN,   // 2#0101 0#DEAD 8#677 10#999
+      TUPLE,        // 1.2.3 1..3
+      PAIR,         // 1x1 1.1x222 1e2x100
+      NUMBER_MONEY, // $2 EUR$2 -USD$1.5  (currency ID not implemented in Rebol3 yet!)
+      CHAR,         // #"a" #"^-" #"^(tab)"
+      STRING,       // "aa" {b^/b}
+      STRING_MULTILINE,
+      STRING_RAW_4, STRING_RAW_3, STRING_RAW_2, STRING_RAW_1,
+      FILE,         // %foo %"with space"
+      URL,          // https://localhost:8080/foo?a=1
+      REFINEMENT,   // /refinement
+      LIT_WORD,     // 'word
+      SET_WORD,     // word:
+      GET_WORD,     // :word
+      OPERATOR,     // == <> >= ...
+      TAG,          // <a>
+      EMAIL,        // user@domain.com
+      DATATYPE,     // integer! but also any-string?
+//    COMMENT_SPECIAL, 
+      DATE, TIME, 
+      ISSUE,
+      KEYWORD,
+      RED_NUMBER_HEX,  
+      NUMBER_DECIMAL,
+      ANY_WORD
     ]
-  };
-}
+    };
+  }
+  return rebol;
+})();
+
+  hljs.registerLanguage('rebol', hljsGrammar);
+})();
