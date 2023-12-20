@@ -23,7 +23,7 @@ Simply load the module after loading Highlight.js. You'll use the minified versi
 ### Using directly from the UNPKG CDN
 
 ```html
-<script src="https://unpkg.com/highlightjs-redbol/dist/redbol.min.js"></script>
+<script src="https://unpkg.com/highlightjs-redbol@2.0.1/dist/redbol.min.js"></script>
 ```
 
 - More info: <https://unpkg.com>
