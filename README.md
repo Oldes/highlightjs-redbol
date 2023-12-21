@@ -1,4 +1,4 @@
-# [Rebol][1] & [Red][2] language grammar for [highlight.js][5](version 11.9.0)
+# [Rebol][1] & [Red][2] language grammar for [highlight.js][5](11.9.0)
 
 [![version](https://badgen.net/npm/v/highlightjs-redbol?v2.0.1)](https://www.npmjs.com/package/highlightjs-redbol)
 [![license](https://badgen.net/badge/license/CC0%201.0/blue)](https://github.com/Oldes/highlightjs-redbol/blob/master/LICENSE)
@@ -23,7 +23,7 @@ Simply load the module after loading Highlight.js. You'll use the minified versi
 ### Using directly from the UNPKG CDN
 
 ```html
-<script src="https://unpkg.com/highlightjs-redbol@2.0.1/dist/redbol.min.js"></script>
+<script src="https://unpkg.com/highlightjs-redbol@2.0.2/dist/redbol.min.js"></script>
 ```
 
 - More info: <https://unpkg.com>

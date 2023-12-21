@@ -1,8 +1,8 @@
 /*
- * Language: Rebol & Red
+ * Language: Rebol (and Red)
  * Category: common, scripting
  * Source: https://github.com/oldes/highlightjs-redbol
- * Version: 2.0.0
+ * Version: 2.0.2
  * Contributors:
  *   Oldes <oldes.huhuman@gmail.com>
  */
@@ -126,7 +126,7 @@
 
   const BRACKET = {
     className: 'regexp',
-    begin: /(\[|\]|\(|\))+|\#\(|\#\[/   //colors also start of serialized values and maps
+    begin: /(\[|\]|\(|\))+|\#\(|\#\[|\|/   //colors also start of serialized values and maps
   };
 
   const BIN2 = {
@@ -226,17 +226,22 @@
   const OPERATOR = {
     className: 'operator',
     begin: LOOK_BEHIND_DELIMIT
-      +'(==|!==|!=|<=|>=|=?|<>|<|>|>>|>>>|<<|\\+\\+|\\+|\\-\\-|\\-|=|\\*|%|\\/\\/|\\/|and|or|xor|!)'
+      +'(==|!==|!=|<=|>=|=?|<>|<|>|>>|>>>|<<|\\+\\+|\\+|\\-\\-|\\-|=|\\*|%|&|\\/\\/|\\/|and|or|xor|!|not)'
       +LOOK_AHEAD_DELIMIT,
+  };
+  const LITERAL = {
+    className: 'literal',
+    begin: LOOK_BEHIND_DELIMIT+'(true|false|on|off|none)'+LOOK_AHEAD_DELIMIT,
   };
   const KEYWORD = {
     className: 'keyword',
     begin: LOOK_BEHIND_DELIMIT
      +'(if|either|unless|any|all|quit|return|exit|continue|break|try|catch|throw|make|to|as|set|print|prin|probe|'
-     +'for|foreach|forall|forskip|until|do|while|case|loop|repeat|switch|'
-     +'reduce|reform|join|ajoin|copy|binary|'
-     //+'load|transcode|read|write|open|close|'
-     +'does|has|wrap|function|func|closure|bind|parse|wait)'
+     +'for|foreach|forall|forever|forskip|until|do|while|case|loop|repeat|switch|opt|some|thru|select|pick|poke|reverse|'
+     +'put|extend|append|repend|reduce|reform|rejoin|join|ajoin|copy|binary|transcode|reject|skip|end|'
+     +'load|read|write|open|close|query|head|tail|clear|insert|remove|find|enhex|dehex|debase|checksum|'
+     +'difference|union|intersect|exclude|unique|complement|charset|'
+     +'does|has|wrap|function|func|closure|context|object|module|bind|parse|wait)'
      +LOOK_AHEAD_DELIMIT,
   };
 
@@ -278,6 +283,7 @@
 //    COMMENT_SPECIAL, 
       DATE, TIME, 
       ISSUE,
+      LITERAL,
       KEYWORD,
       RED_NUMBER_HEX,  
       NUMBER_DECIMAL,
