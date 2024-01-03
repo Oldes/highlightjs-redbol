@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/oldes/highlightjs-redbol#readme",
   "dependencies": {
-    "highlightjs": "^11.9.0"
+    "highlight.js": "^11.9.0"
   }
 }
