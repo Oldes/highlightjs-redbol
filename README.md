@@ -27,7 +27,7 @@ Simply load the module after loading Highlight.js. You'll use the minified versi
 <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css">
 <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
 <!-- and it's easy to individually load additional languages -->
-<script src="https://unpkg.com/highlightjs-redbol@2.0.3/dist/redbol.min.js"></script>
+<script src="https://unpkg.com/highlightjs-redbol@2.1.0/dist/redbol.min.js"></script>
 
 <pre><code class="language-rebol">...</code></pre>
 <script>hljs.highlightAll();</script>
@@ -39,7 +39,7 @@ Simply load the module after loading Highlight.js. You'll use the minified versi
 <script type="module">
 import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
 //  and it's easy to individually load & register additional languages
-import hljsRebol from 'https://unpkg.com/highlightjs-redbol@2.0.3/dist/redbol.es.min.js';
+import hljsRebol from 'https://unpkg.com/highlightjs-redbol@2.1.0/dist/redbol.es.min.js';
 hljs.registerLanguage('rebol', hljsRebol);
 </script>
 
