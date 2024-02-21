@@ -20,59 +20,33 @@ Simply load the module after loading Highlight.js. You'll use the minified versi
 <pre><code class="language-rebol">...</code></pre>
 ```
 
-### Using directly from the UNPKG CDN
+### Using directly from the UNPKG CDN <https://unpkg.com>
 
+#### Common JS
 ```html
+<link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css">
+<script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
 <script src="https://unpkg.com/highlightjs-redbol@2.0.3/dist/redbol.min.js"></script>
+
+<pre><code class="language-rebol">...</code></pre>
+<script>hljs.highlightAll();</script>
 ```
 
-- More info: <https://unpkg.com>
+#### ES6 Modules
+```html
+<link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css">
+<script type="module">
+import hljs from 'https://unpkg.com/@highlightjs/cdn-assets@11.9.0/es/highlight.min.js';
+//  and it's easy to individually load & register additional languages
+import hljsRebol from 'https://unpkg.com/highlightjs-redbol@2.0.3/dist/redbol.es.min.js';
+hljs.registerLanguage('rebol', hljsRebol);
+</script>
 
-### With Node or another build system
-
-If you're using Node / Webpack / Rollup / Browserify, etc, simply require the language module, then register it with Highlight.js.
-
-```javascript
-var hljs = require('highlight.js');
-var hljsRedbol = require('highlightjs-redbol');
-
-hljs.highlightAll();
+<pre><code class="language-rebol">...</code></pre>
+<script>hljs.highlightAll();</script>
 ```
 
-### React
-
-You need to import both Highlight.js and third-party language like Redbol:
-
-```js
-import React, {Component} from 'react'
-import 'highlight.js/scss/darcula.scss' # your favourite theme
-import hljs from 'highlight.js'
-import redbol from './redbol'
-
-class Highlighter extends Component
-{
-  constructor(props)
-  {
-    super(props);
-    hljs.highlightAll();
-  }
-
-  render()
-  {
-    let {children} = this.props;
-    return
-    {
-      <pre ref={(node) => this.node = node}>
-        <code className="rebol">
-          {children}
-        </code>
-      </pre>
-    }
-  }
-}
-
-export default Highlighter;
-```
 
 ## License
 

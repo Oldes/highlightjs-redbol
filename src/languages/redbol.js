@@ -2,16 +2,13 @@
  * Language: Rebol (and Red)
  * Category: common, scripting
  * Source: https://github.com/oldes/highlightjs-redbol
- * Version: 2.0.2
+ * Version: 2.1.0
  * Contributors:
  *   Oldes <oldes.huhuman@gmail.com>
  */
-  (function(){
-    var hljsGrammar = (function () {
-  'use strict';
 
-  function rebol(hljs) {
-
+/** @type LanguageFn */
+export default function(hljs) {
   const LEX_DELIMIT = '\\s\\n\\[\\]\\(\\)\\"{}/;';
   const LEX_DELIMIT2 = '\\s\\n\\[\\]\\(\\)\\"{};'; // without /
   const LOOK_BEHIND_DELIMIT = '(?<=^|['+ LEX_DELIMIT +'])';
@@ -289,10 +286,5 @@
       NUMBER_DECIMAL,
       ANY_WORD
     ]
-    };
-  }
-  return rebol;
-})();
-
-  hljs.registerLanguage('rebol', hljsGrammar);
-})();
+  };
+}
